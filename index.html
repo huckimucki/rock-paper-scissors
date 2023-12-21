@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function game() {
+        let result = playRound(
+          getComputerChoice(),
+          prompt("Enter your choice").toLowerCase()
+        );
+        if (!result) {
+          console.log(
+            playRound(
+              getComputerChoice(),
+              prompt("Enter your choice").toLowerCase()
+            )
+          );
+        }
+      }
+
+      // function that lets Computer choose between Rock, Paper and Scissors
+      function getComputerChoice() {
+        const choiceGenerator = Math.random();
+        if (choiceGenerator <= 1 / 3) {
+          computerChoice = "rock";
+        } else if (choiceGenerator > 2 / 3) {
+          computerChoice = "scissors";
+        } else {
+          computerChoice = "paper";
+        }
+        let answer = computerChoice;
+        return answer;
+      }
+      // function game runs five times, safes the result of each round and announces a winner in the end (best of five)
+      // function playRound to play one round and display a message, that accounts for all endings
+      // if playRound ends in a draw, the function is automatically revoked again to replay the round
+
+      function playRound(computerSelection, playerSelection) {
+        if (playerSelection === computerChoice) {
+          alert(`It's a draw, you both chose ${playerSelection}`);
+          return false;
+        } else if (playerSelection == "rock" && computerChoice == "scissors") {
+          alert(`You win! ${playerSelection} beats ${computerChoice}`);
+        } else if (playerSelection == "paper" && computerChoice == "rock") {
+          alert(`You win! ${playerSelection} beats ${computerChoice}`);
+        } else if (playerSelection == "scissors" && computerChoice == "paper") {
+          alert(`You win! ${playerSelection} beats ${computerChoice}`);
+        } else if (playerSelection == "rock" && computerChoice == "paper") {
+          alert(`You lose! ${computerChoice} beats ${playerSelection}`);
+        } else if (playerSelection == "paper" && computerChoice == "scissors") {
+          alert(`You lose! ${computerChoice} beats ${playerSelection}`);
+        } else if (playerSelection == "scissors" && computerChoice == "rock") {
+          alert(`You lose! ${computerChoice} beats ${playerSelection}`);
+        } else if (playerSelection != "rock" || "paper" || "scissors") {
+          alert("That is not a choice");
+        }
+        return true;
+      }
+
+      const playerSelection = prompt("Enter your choice").toLowerCase();
+      const computerSelection = getComputerChoice();
+      console.log(playRound(computerSelection, playerSelection));
+    </script>
+  </body>
+</html>
