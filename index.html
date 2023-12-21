@@ -8,20 +8,21 @@
   <body>
     <script>
       function game() {
-        let result = playRound(
-          getComputerChoice(),
-          prompt("Enter your choice").toLowerCase()
+        let result = console.log(
+          playRound(
+            getComputerChoice(),
+            prompt("Enter your CHOICE").toLowerCase()
+          )
         );
         if (!result) {
           console.log(
             playRound(
               getComputerChoice(),
-              prompt("Enter your choice").toLowerCase()
+              prompt("Enter your CHOICE").toLowerCase()
             )
           );
         }
       }
-
       // function that lets Computer choose between Rock, Paper and Scissors
       function getComputerChoice() {
         const choiceGenerator = Math.random();
@@ -39,7 +40,7 @@
       // function playRound to play one round and display a message, that accounts for all endings
       // if playRound ends in a draw, the function is automatically revoked again to replay the round
 
-      function playRound(computerSelection, playerSelection) {
+      function playRound(computerChoice, playerSelection) {
         if (playerSelection === computerChoice) {
           alert(`It's a draw, you both chose ${playerSelection}`);
           return false;
@@ -61,9 +62,7 @@
         return true;
       }
 
-      const playerSelection = prompt("Enter your choice").toLowerCase();
-      const computerSelection = getComputerChoice();
-      console.log(playRound(computerSelection, playerSelection));
+      window.onload = game();
     </script>
   </body>
 </html>
