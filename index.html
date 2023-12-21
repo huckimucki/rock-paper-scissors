@@ -7,19 +7,21 @@
   </head>
   <body>
     <script>
+      for (let i = 0; i < 5; i++) {
+        if (i < 5) {
+          game();
+        }
+      }
+
       function game() {
-        let result = console.log(
+        let result = playRound(
+          getComputerChoice(),
+          prompt("Enter your choice").toLowerCase()
+        );
+        if (!result) {
           playRound(
             getComputerChoice(),
             prompt("Enter your CHOICE").toLowerCase()
-          )
-        );
-        if (!result) {
-          console.log(
-            playRound(
-              getComputerChoice(),
-              prompt("Enter your CHOICE").toLowerCase()
-            )
           );
         }
       }
@@ -41,25 +43,41 @@
       // if playRound ends in a draw, the function is automatically revoked again to replay the round
 
       function playRound(computerChoice, playerSelection) {
+        let a = 0;
+        let b = 0;
         if (playerSelection === computerChoice) {
           alert(`It's a draw, you both chose ${playerSelection}`);
           return false;
         } else if (playerSelection == "rock" && computerChoice == "scissors") {
           alert(`You win! ${playerSelection} beats ${computerChoice}`);
+          c = ++a;
         } else if (playerSelection == "paper" && computerChoice == "rock") {
           alert(`You win! ${playerSelection} beats ${computerChoice}`);
+          c = ++a;
         } else if (playerSelection == "scissors" && computerChoice == "paper") {
           alert(`You win! ${playerSelection} beats ${computerChoice}`);
+          c = ++a;
         } else if (playerSelection == "rock" && computerChoice == "paper") {
           alert(`You lose! ${computerChoice} beats ${playerSelection}`);
+          d = ++b;
         } else if (playerSelection == "paper" && computerChoice == "scissors") {
           alert(`You lose! ${computerChoice} beats ${playerSelection}`);
+          d = ++b;
         } else if (playerSelection == "scissors" && computerChoice == "rock") {
           alert(`You lose! ${computerChoice} beats ${playerSelection}`);
+          d = ++b;
         } else if (playerSelection != "rock" || "paper" || "scissors") {
           alert("That is not a choice");
         }
         return true;
+        if (a === 3) {
+          alert("You beat the computer three times and won the game!");
+        } else if (b === 3) {
+          alert("You lost against the Computer three times and lost the game!");
+        }
+
+        console.log(a);
+        console.log(b);
       }
 
       window.onload = game();
